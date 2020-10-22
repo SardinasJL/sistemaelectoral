@@ -34,17 +34,17 @@ class DatabaseSeeder extends Seeder
     private $arrayMesas = array(
         array(
             "numero" => "1",
-            "rol" => "presidente",
+            "rol" => "Presidente",
             "integrante_id" => "1"
         ),
         array(
             "numero" => "1",
-            "rol" => "secretario",
+            "rol" => "Secretario",
             "integrante_id" => "2",
         ),
         array(
             "numero" => "1",
-            "rol" => "delegado",
+            "rol" => "Delegado",
             "integrante_id" => "3",
         )
     );
@@ -78,6 +78,14 @@ class DatabaseSeeder extends Seeder
         )
     );
 
+    private $arrayUsuarios = array(
+        array(
+            "name" => "admin",
+            "email" => "admin@gmail.com",
+            "password" => "admin"
+        )
+    );
+
 
     /**
      * Seed the application's database.
@@ -95,12 +103,16 @@ class DatabaseSeeder extends Seeder
         self::seedActas();
         $this->command->info("Tabla actas inicializada con éxito");
 
+        self::seedUsuarios();
+        $this->command->info("Tabla usuarios inicializada con éxito");
+
 
     }
 
-    public function seedIntegrantes(){
+    public function seedIntegrantes()
+    {
         DB::table("integrantes")->delete();
-        foreach ($this->arrayIntegrantes as $integrante){
+        foreach ($this->arrayIntegrantes as $integrante) {
             $p = new Integrante;
             $p->ci = $integrante["ci"];
             $p->nombres = $integrante["nombres"];
@@ -109,9 +121,10 @@ class DatabaseSeeder extends Seeder
         }
     }
 
-    public function seedMesas(){
+    public function seedMesas()
+    {
         DB::table("mesas")->delete();
-        foreach ($this->arrayMesas as $mesa){
+        foreach ($this->arrayMesas as $mesa) {
             $p = new Mesa;
             $p->numero = $mesa["numero"];
             $p->rol = $mesa["rol"];
@@ -120,9 +133,10 @@ class DatabaseSeeder extends Seeder
         }
     }
 
-    public function seedActas(){
+    public function seedActas()
+    {
         DB::table("actas")->delete();
-        foreach ($this->arrayActas as $acta){
+        foreach ($this->arrayActas as $acta) {
             $p = new Acta;
             $p->fecha = $acta["fecha"];
             $p->horainicio = $acta["horainicio"];
@@ -135,6 +149,18 @@ class DatabaseSeeder extends Seeder
             $p->total = $acta["total"];
             $p->observaciones = $acta["observaciones"];
             $p->mesa_id = $acta["mesa_id"];
+            $p->save();
+        }
+    }
+
+    public function seedUsuarios()
+    {
+        DB::table("users")->delete();
+        foreach ($this->arrayUsuarios as $usuario){
+            $p = new User();
+            $p->name = $usuario["name"];
+            $p->email = $usuario["email"];
+            $p->password = bcrypt($usuario["password"]);
             $p->save();
         }
     }
