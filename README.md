@@ -6,6 +6,7 @@ El desarrollo se realizó empleando el framework Laravel.
 - La base de datos a crear debe nombrarse "sistemaelectoral" (sin espacios y sin comillas)
 - Las tablas se crean realizando las migraciones respectivas, por lo que se debe ejecutar el comando "php artisan migrate"
 - Los datos de prueba (semillas) se insertan ejecutando el comando "php artisan db:seed"
+- El usario por defecto es: name=admin email=admin@gmail.com password=admin
 
 ## Laravel
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
