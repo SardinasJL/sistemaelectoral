@@ -18,6 +18,8 @@ class CreateIntegrantesTable extends Migration
             $table->integer("ci");
             $table->string("nombres");
             $table->string("apellidos");
+            $table->string("rol");
+            $table->foreignId("mesa_id")->references("id")->on("mesas")->onDelete("cascade");
             $table->timestamps();
         });
     }

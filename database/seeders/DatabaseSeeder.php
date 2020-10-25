@@ -12,42 +12,46 @@ use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
+    private $arrayMesas = array(
+        array(
+            "numero" => "1",
+            "ubicacion" => "USFA"
+        ),
+        array(
+            "numero" => "2",
+            "ubicacion" => "Escuela Ayacucho"
+        ),
+        array(
+            "numero" => "3",
+            "ubicacion" => "Colegio Antofagasta"
+        )
+    );
 
     private $arrayIntegrantes = array(
         array(
             "ci" => "1234567",
             "nombres" => "Juan",
             "apellidos" => "Pérez",
+            "rol" => "Presidente",
+            "mesa_id" => "1"
         ),
         array(
             "ci" => "1234568",
             "nombres" => "Jorge",
             "apellidos" => "Campos",
+            "rol" => "Presidente",
+            "mesa_id" => "2"
         ),
         array(
             "ci" => "1234568",
             "nombres" => "Ramiro",
             "apellidos" => "Ramírez",
+            "rol" => "Secretario",
+            "mesa_id" => "2"
         )
     );
 
-    private $arrayMesas = array(
-        array(
-            "numero" => "1",
-            "rol" => "Presidente",
-            "integrante_id" => "1"
-        ),
-        array(
-            "numero" => "1",
-            "rol" => "Secretario",
-            "integrante_id" => "2",
-        ),
-        array(
-            "numero" => "1",
-            "rol" => "Delegado",
-            "integrante_id" => "3",
-        )
-    );
+
 
     private $arrayActas = array(
         array(
@@ -94,11 +98,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        self::seedIntegrantes();
-        $this->command->info("Tabla integrantes inicializada con éxito");
-
         self::seedMesas();
         $this->command->info("Tabla mesas inicializada con éxito");
+
+        self::seedIntegrantes();
+        $this->command->info("Tabla integrantes inicializada con éxito");
 
         self::seedActas();
         $this->command->info("Tabla actas inicializada con éxito");
@@ -109,6 +113,17 @@ class DatabaseSeeder extends Seeder
 
     }
 
+    public function seedMesas()
+    {
+        DB::table("mesas")->delete();
+        foreach ($this->arrayMesas as $mesa) {
+            $p = new Mesa;
+            $p->numero = $mesa["numero"];
+            $p->ubicacion = $mesa["ubicacion"];
+            $p->save();
+        }
+    }
+
     public function seedIntegrantes()
     {
         DB::table("integrantes")->delete();
@@ -117,18 +132,8 @@ class DatabaseSeeder extends Seeder
             $p->ci = $integrante["ci"];
             $p->nombres = $integrante["nombres"];
             $p->apellidos = $integrante["apellidos"];
-            $p->save();
-        }
-    }
-
-    public function seedMesas()
-    {
-        DB::table("mesas")->delete();
-        foreach ($this->arrayMesas as $mesa) {
-            $p = new Mesa;
-            $p->numero = $mesa["numero"];
-            $p->rol = $mesa["rol"];
-            $p->integrante_id = $mesa["integrante_id"];
+            $p->rol = $integrante["rol"];
+            $p->mesa_id = $integrante["mesa_id"];
             $p->save();
         }
     }

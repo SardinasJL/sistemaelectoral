@@ -25,7 +25,7 @@ class CreateActasTable extends Migration
             $table->integer("nulos");
             $table->integer("total");
             $table->string("observaciones");
-            $table->foreignId("mesa_id")->references("id")->on("mesas");
+            $table->foreignId("mesa_id")->references("id")->on("mesas")->onDelete("cascade");
             $table->timestamps();
         });
     }

@@ -7,16 +7,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ url("/") }}">Inicio</a>
+                <a class="nav-link {{  Request::is('/') ? 'active' : ''}}" href="{{ url("/") }}">Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url("integrantes") }}">Integrantes</a>
+                <a class="nav-link {{  Request::is('mesas') ? 'active' : ''}}" href="{{ url("mesas") }}">Mesas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url("mesas") }}">Mesas</a>
+                <a class="nav-link {{  Request::is('integrantes') ? 'active' : ''}}" href="{{ url("integrantes") }}">Integrantes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url("actas") }}">Actas</a>
+                <a class="nav-link {{  Request::is('actas') ? 'active' : ''}}" href="{{ url("actas") }}">Actas</a>
             </li>
         </ul>
 

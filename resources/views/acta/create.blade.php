@@ -2,11 +2,12 @@
 
 @section("content")
 
+    <div class="container text-center"><h1>Nueva acta</h1></div>
     <div class="container col-md-6">
         <form action="{{ action("App\Http\Controllers\ActaController@postCreate") }}" method="POST">
             {{ csrf_field() }}
             <div class="form-group">
-                <label for="mesa_id">Número de acta</label>
+                <label for="mesa_id">Número de mesa</label>
                 <select class="form-control" name="mesa_id" id="mesa_id">
                     @foreach($arrayMesas as $mesa)
                         <option value="{{ $mesa->id }}">{{ $mesa->numero }}</option>

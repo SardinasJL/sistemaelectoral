@@ -10,59 +10,37 @@ use App\Models\Integrante;
 class MesaController extends Controller
 {
 
-    private $arrayRoles = array(
-        array("nombre" => "Presidente"),
-        array("nombre" => "Secretario"),
-        array("nombre" => "Delegado"),
-        array("nombre" => "Notario")
-    );
-
     public function getAll()
     {
-        //$arrayMesas = Mesa::all()->sortBy("numero");
-        $arrayMesas = Mesa::select("mesas.id", "mesas.numero", "mesas.rol", "mesas.integrante_id", "integrantes.nombres", "integrantes.apellidos")
-            ->join("integrantes", "mesas.integrante_id", "=", "integrantes.id")
-            ->get()
-            ->sortBy("numero");
+        $arrayMesas = Mesa::all();
         return view("mesa.index")->with("arrayMesas", $arrayMesas);
     }
 
     public function getCreate()
     {
-        $arrayIntegrantes = Integrante::all();
-        return view("mesa.create")->with("arrayIntegrantes", $arrayIntegrantes)
-            ->with("arrayRoles", $this->arrayRoles);
+        return view("mesa.create");
     }
 
     public function postCreate(Request $request)
     {
         $p = new Mesa();
         $p->numero = $request->numero;
-        $p->rol = $request->rol;
-        $p->integrante_id = $request->integrante_id;
+        $p->ubicacion = $request->ubicacion;
         $p->save();
         return redirect()->action("App\Http\Controllers\MesaController@getAll");
     }
 
     public function getEdit($id)
     {
-        //$mesa = Mesa::find($id);
-        $arrayIntegrantes = Integrante::all();
-        $mesa = Mesa::select("mesas.id", "mesas.numero", "mesas.rol", "mesas.integrante_id", "integrantes.nombres", "integrantes.apellidos")
-            ->join("integrantes", "mesas.integrante_id", "=", "integrantes.id")
-            ->where("mesas.id", $id)
-            ->get();
-        return view("mesa.edit")->with("mesa", $mesa[0])
-            ->with("arrayIntegrantes", $arrayIntegrantes)
-            ->with("arrayRoles", $this->arrayRoles);
+        $mesa = Mesa::find($id);
+        return view("mesa.edit")->with("mesa", $mesa);
     }
 
     public function postEdit(Request $request, $id)
     {
         $mesa = Mesa::find($id);
         $mesa->numero = $request->numero;
-        $mesa->rol = $request->rol;
-        $mesa->integrante_id = $request->integrante_id;
+        $mesa->ubicacion = $request->ubicacion;
         $mesa->save();
         return redirect()->action("App\Http\Controllers\MesaController@getAll");
     }

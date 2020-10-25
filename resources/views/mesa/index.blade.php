@@ -9,8 +9,7 @@
             <tr>
                 <!---<th scope="col">Id</th>--->
                 <th scope="col">Número de mesa</th>
-                <th scope="col">Rol</th>
-                <th scope="col">Integrante</th>
+                <th scope="col">Ubicación</th>
                 <th scope="col"></th>
             </tr>
 
@@ -20,13 +19,13 @@
             @foreach($arrayMesas as $mesa)
 
                 <tr>
-                    <!---<td>{{ $mesa->id }}</td>--->
                     <td>{{ $mesa->numero }}</td>
-                    <td>{{ $mesa->rol }}</td>
-                    <!---<td>{{ $mesa->integrante_id }}</td>--->
-                    <td>{{ $mesa->apellidos . " " .$mesa->nombres}}</td>
-                    <td><a href="{{ action("App\Http\Controllers\MesaController@getEdit", $mesa->id) }}" class="btn btn-primary">Editar</a>
-                        <a href="{{ action("App\Http\Controllers\MesaController@Delete", $mesa->id) }}" class="btn btn-danger">Eliminar</a>
+                    <td>{{ $mesa->ubicacion }}</td>
+                    <td>
+                        <a href="{{ action("App\Http\Controllers\MesaController@getEdit", $mesa->id) }}"
+                           class="btn btn-primary">Editar</a>
+                        <a href="{{ action("App\Http\Controllers\MesaController@Delete", $mesa->id) }}"
+                           class="btn btn-danger">Eliminar</a>
                     </td>
                 </tr>
 

@@ -2,15 +2,16 @@
 
 @section("content")
 
-    <div class="container col-md-8 text-center">
+    <div class="container col-md-10 text-center">
         <h1>Integrantes</h1>
         <table class="table table-hover table-responsive-sm">
             <thead>
             <tr>
-                <th scope="col">Id</th>
                 <th scope="col">CI</th>
                 <th scope="col">Nombres</th>
                 <th scope="col">Apellidos</th>
+                <th scope="col">Rol</th>
+                <th scope="col">N° de mesa</th>
                 <th scope="col"></th>
             </tr>
 
@@ -20,10 +21,11 @@
             @foreach($arrayIntegrantes as $integrante)
 
                 <tr>
-                    <td>{{ $integrante->id }}</td>
                     <td>{{ $integrante->ci }}</td>
                     <td>{{ $integrante->nombres }}</td>
                     <td>{{ $integrante->apellidos }}</td>
+                    <td>{{ $integrante->rol }}</td>
+                    <td>{{ $integrante->numero }}</td>
                     <td><a href="{{ action("App\Http\Controllers\IntegranteController@getEdit", $integrante->id) }}" class="btn btn-primary">Editar</a>
                         <a href="{{ action("App\Http\Controllers\IntegranteController@Delete", $integrante->id) }}" class="btn btn-danger">Eliminar</a>
                     </td>

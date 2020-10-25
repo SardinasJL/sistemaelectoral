@@ -2,6 +2,7 @@
 
 @section("content")
 
+    <div class="container text-center"><h1>Editar acta</h1></div>
     <div class="container col-md-6">
         <form action="{{ action("App\Http\Controllers\ActaController@postEdit", $acta->id) }}" method="POST">
             {{ csrf_field() }}

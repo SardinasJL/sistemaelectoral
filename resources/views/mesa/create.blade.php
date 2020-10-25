@@ -2,6 +2,7 @@
 
 @section("content")
 
+    <div class="container text-center"><h1>Nueva mesa</h1></div>
     <div class="container col-md-6">
         <form action="{{ action("App\Http\Controllers\MesaController@postCreate") }}" method="POST">
             {{ csrf_field() }}
@@ -12,21 +13,8 @@
                 <div class="invalid-feedback">El número de mesa no es válido</div>
             </div>
             <div class="form-group">
-                <label for="rol">Rol</label>
-                <select class="form-control" name="rol" id="rol">
-                    @foreach($arrayRoles as $rol)
-                        <option value="{{ $rol["nombre"] }}">{{ $rol["nombre"] }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="integrante_id">Integrante</label>
-                <select class="form-control" name="integrante_id" id="integrante_id">
-                    @foreach($arrayIntegrantes as $integrante)
-                        <option
-                            value="{{ $integrante->id }}">{{ $integrante->apellidos . " " . $integrante->nombres }}</option>
-                    @endforeach
-                </select>
+                <label for="ubicacion">Ubicación</label>
+                <textarea class="form-control" name="ubicacion" id="ubicacion" cols="30" rows="10" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Añadir integrante</button>
         </form>

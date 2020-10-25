@@ -16,8 +16,7 @@ class CreateMesasTable extends Migration
         Schema::create('mesas', function (Blueprint $table) {
             $table->id();
             $table->integer("numero");
-            $table->string("rol");
-            $table->foreignId("integrante_id")->references("id")->on("integrantes");
+            $table->string("ubicacion");
             $table->timestamps();
         });
     }
