@@ -17,6 +17,7 @@ class VotationController extends Controller
         $votosBlancos = DB::table("actas")->sum("blancos");
         $votosNulos = DB::table("actas")->sum("nulos");
         $votosTotal = DB::table("actas")->sum("total");
+        if ($votosTotal == 0) $votosTotal=1; //Esta línea de código previene que votosTotal sea 0 para evitar divisiones entre 0
         $arrayVotes = array(
             "votosLista1" => $votosLista1,
             "votosLista2" => $votosLista2,
@@ -26,6 +27,7 @@ class VotationController extends Controller
             "votosTotal" => $votosTotal
         );
         return view("general.index")->with("arrayVotes", $arrayVotes);
+
     }
 
 }
