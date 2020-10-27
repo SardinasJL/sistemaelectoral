@@ -43,9 +43,21 @@ Route::group(["middleware" => "auth"], function () {
     Route::post("actas/edit/{id}", "App\Http\Controllers\ActaController@postEdit");
     Route::get("actas/delete/{id}", "App\Http\Controllers\ActaController@Delete");
 
+    //Rutas para la tabla users
+    Route::get("users", "App\\Http\\Controllers\\UserController@getAll");
+    Route::get("users/create", "App\\Http\\Controllers\\UserController@getCreate");
+    Route::post("users/create", "App\\Http\\Controllers\\UserController@postCreate");
+    Route::get("users/{id}", "App\Http\Controllers\UserController@getEdit");
+    Route::post("users/{id}", "App\Http\Controllers\UserController@postEdit");
+    Route::get("users/delete/{id}", "App\Http\Controllers\UserController@delete");
+
+
 });
 
-Route::post("logout", "App\Http\Controllers\LoginController@logout");
+//Tomar en cuenta que la ruta "logout" ya fue creada (automáticamente) al instalar jetstream
+//Al igual que la ruta "register"
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

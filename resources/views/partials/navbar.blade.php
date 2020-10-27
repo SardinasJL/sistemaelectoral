@@ -18,9 +18,12 @@
             <li class="nav-item">
                 <a class="nav-link {{  Request::is('actas') ? 'active' : ''}}" href="{{ url("actas") }}">Actas</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{  Request::is('users') ? 'active' : ''}}" href="{{ url("users") }}">Usuarios</a>
+            </li>
         </ul>
 
-        <form action="{{ action("App\Http\Controllers\LoginController@logout") }}" method="post" class="form-inline my-2 my-lg-0">
+        <form action="{{ url("logout") }}" method="post" class="form-inline my-2 my-lg-0">
         {{ csrf_field() }}
             <!---<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">--->
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cerrar sesión</button>

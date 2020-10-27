@@ -16,7 +16,7 @@
             <div class="form-group">
                 <label for="nombres">Nombres</label>
                 <input type="text" class="form-control" name="nombres" id="nombres" value="{{ $integrante->nombres }}"
-                       maxlength="50" title="No es un nombre válido" required>
+                       minlength="1" maxlength="50" title="No es un nombre válido" required>
                 <div class="invalid-feedback">No es un nombre válido</div>
             </div>
             <div class="form-group">

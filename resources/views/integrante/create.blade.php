@@ -8,19 +8,20 @@
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="ci">CI</label>
-                <input type="number" class="form-control" name="ci" id="ci" value="{{ old("ci") }}" required>
+                <input type="number" class="form-control" name="ci" id="ci" value="{{ old("ci") }}" min="100"
+                       max="999999999" step="1" title="No es un CI válido" required>
                 <div class="invalid-feedback">El CI no es válido</div>
             </div>
             <div class="form-group">
                 <label for="nombres">Nombres</label>
                 <input type="text" class="form-control" name="nombres" id="nombres" value="{{ old("nombres") }}"
-                       required>
+                       required minlength="1" maxlength="50" title="No es un nombre válido">
                 <div class="invalid-feedback">No es un nombre válido</div>
             </div>
             <div class="form-group">
                 <label for="apellidos">Apellidos</label>
                 <input type="text" class="form-control" name="apellidos" id="apellidos" value="{{ old("apellidos") }}"
-                       required>
+                       minlength="1" maxlength="50" title="No es un nombre válido" required>
                 <div class="invalid-feedback">No es un apellido válido</div>
             </div>
             <div class="form-group">
